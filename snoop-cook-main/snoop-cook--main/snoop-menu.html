@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>Peanuts & Crumbs</title>
+  <meta name="title" content="Peanuts & Crumbs">
+  <meta name="description" content="This is a Snoopy menu">
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">Snoopy</p>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #TOP BAR
+  -->
+
+  <div class="topbar">
+    <div class="container">
+
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">
+          Peanuts & Crumbs 
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">Viernes a Domingo : 11:00 am a 7:00 pm</span>
+      </div>
+
+      <a href="tel:+11234567890" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">+502 5689-2314</span>
+      </a>
+
+      <div class="separator"></div>
+
+      <a href="mailto:booking@restaurant.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">peanuts&crumbs@uvg.edu.gt</span>
+      </a>
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.png" width="160" height="50" alt="Snoopy - Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.png" width="160" height="50" alt="Snoop - Home">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+
+              <span class="span">Home</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#menu" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Menú</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Nosotros</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Nuestros Chefs</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Contacto</span>
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Visítanos</p>
+
+          <address class="body-4">
+            Guatemala, Guatemala <br>
+          </address>
+
+          <p class="body-4 navbar-text">Abierto: 11:00 am - 7:00 pm</p>
+
+          <a href="mailto:booking@uvg.edu.gt" class="body-4 sidebar-link">peanuts&crumbs@uvg.edu.gtt</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Reserva</p>
+
+          <a href="tel:+callme" class="body-1 contact-number hover-underline">
+            +502 5689-2314
+          </a>
+        </div>
+
+      </nav>
+
+      <a href="#" class="btn btn-secondary">
+        <span class="text text-1">Encuentra una mesa</span>
+
+        <span class="text text-2" aria-hidden="true">Encuentra una mesa</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero text-center" aria-label="home" id="home">
+
+        <ul class="hero-slider" data-hero-slider>
+
+          <li class="slider-item active" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">¡Una Gran Experiencia!</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Pequeños placeres, <br>
+              grandes sonrisas
+            </h1>
+
+            <p class="body-2 hero-text slider-reveal">
+              Ven con familia y amigos, y siente la dulzura de estar juntos.
+            </p>
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Visita nuestro Menú</span>
+
+              <span class="text text-2" aria-hidden="true">Visita nuestro Menú</span>
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal"> ¡Una Gran Experiencia!</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Sabores inspirados <br>
+              en Peanuts
+            </h1>
+
+            <p class="body-2 hero-text slider-reveal">
+              Ven con familia y amigos, y siente la dulzura de estar juntos.
+            </p>
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Visita nuestro Menú</span>
+
+              <span class="text text-2" aria-hidden="true">Visita nuestro Menú</span>
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">Galletas Peanuts & Crumbs</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+               Donde cada bocado y sorbo <br>
+              saben a momento feliz
+            </h1>
+
+            <p class="body-2 hero-text slider-reveal">
+             Ven con familia y amigos, y siente la dulzura de estar juntos.
+            </p>
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">Visita nuestro Menú</span>
+
+              <span class="text text-2" aria-hidden="true">Visita nuestro Menú</span>
+            </a>
+
+          </li>
+
+        </ul>
+
+        <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+          <ion-icon name="chevron-back"></ion-icon>
+        </button>
+
+        <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </button>
+
+        <a href="#" class="hero-btn has-after">
+          <img src="./assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
+
+          <span class="label-2 text-center span">Reserva una Mesa</span>
+        </a>
+
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service bg-black-10 text-center" aria-label="service">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Flavors For Snoopy Lovers</p>
+
+          <h2 class="headline-1 section-title">Los Mejores Sabores</h2>
+
+          <p class="section-text">
+            Top Snoopy Cookies.
+          </p>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/menu-panini.png" width="285" height="336" loading="lazy" alt="Breakfast"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Salado</a>
+                  </h3>
+
+                  <a href="#" class="btn-text hover-underline label-2"> Ver Menú</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/menu-cookiebutter.png" width="285" height="336" loading="lazy" alt="Appetizers"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Galletas</a>
+                  </h3>
+
+                  <a href="#" class="btn-text hover-underline label-2">Ver Menú</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/menu-caramelfrappe.png" width="285" height="336" loading="lazy" alt="Drinks"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Bebidas</a>
+                  </h3>
+
+                  <a href="#" class="btn-text hover-underline label-2">Ver Menú</a>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <img src="./assets/images/shape-1.png" width="246" height="412" loading="lazy" alt="shape"
+            class="shape shape-1 move-anim">
+          <img src="./assets/images/shape-2.png" width="343" height="345" loading="lazy" alt="shape"
+            class="shape shape-2 move-anim">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+      <!--
+      <section class="section about text-center" aria-labelledby="about-label" id="about">
+        <div class="container">
+
+          <div class="about-content">
+
+            <p class="label-2 section-subtitle" id="about-label">Our Story</p>
+
+            <h2 class="headline-1 section-title">Every Fla vor Tells a Story</h2>
+
+            <p class="section-text">
+              Snoooooopyyyy
+            </p>
+
+            <div class="contact-label">Book Through Call</div>
+
+            <a href="tel:+callme" class="body-1 contact-number hover-underline">+callme</a>
+
+            <a href="#" class="btn btn-primary">
+              <span class="text text-1">Read More</span>
+
+              <span class="text text-2" aria-hidden="true">Read More</span>
+            </a>
+
+          </div>
+
+          <figure class="about-banner">
+
+            <img src="./assets/images/about-banner.jpg" width="570" height="570" loading="lazy" alt="about banner"
+              class="w-100" data-parallax-item data-parallax-speed="1">
+
+            <div class="abs-img abs-img-1 has-before" data-parallax-item data-parallax-speed="1.75">
+              <img src="./assets/images/about-abs-image.jpg" width="285" height="285" loading="lazy" alt=""
+                class="w-100">
+            </div>
+
+            <div class="abs-img abs-img-2 has-before">
+              <img src="./assets/images/badge-2.png" width="133" height="134" loading="lazy" alt="">
+            </div>
+
+          </figure>
+
+          <img src="./assets/images/shape-3.png" width="197" height="194" loading="lazy" alt="" class="shape">
+
+        </div>
+      </section>
+      -->
+
+
+
+
+
+      <!-- 
+        - #SPECIAL DISH
+      -->
+
+      <section class="special-dish text-center" aria-labelledby="dish-label">
+
+        <div class="special-dish-banner">
+          <img src="./assets/images/menu-chocochoco.png" width="940" height="900" loading="lazy" alt="special dish"
+            class="img-cover">
+        </div>
+
+        <div class="special-dish-content bg-black-10">
+          <div class="container">
+
+            <img src="./assets/images/badge-1.png" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
+
+            <p class="section-subtitle label-2">Galleta de Temporada</p>
+
+            <h2 class="headline-1 section-title">Chispas y galleta de chocolate</h2>
+
+            <p class="section-text">
+              ¡Un sabor increíble!
+            </p>
+
+            <div class="wrapper">
+              <del class="del body-3">Q37.00</del>
+
+              <span class="span body-1">Q32.00</span>
+            </div>
+
+            <a href="#" class="btn btn-primary">
+              <span class="text text-1">Regresar</span>
+
+              <span class="text text-2" aria-hidden="true">Regresar</span>
+            </a>
+
+          </div>
+        </div>
+
+        <img src="./assets/images/shape-4.png" width="179" height="359" loading="lazy" alt="" class="shape shape-1">
+
+        <img src="./assets/images/shape-9.png" width="351" height="462" loading="lazy" alt="" class="shape shape-2">
+
+      </section>
+
+
+
+
+
+      <!-- 
+        - #MENU
+      -->
+
+      <section class="section menu" aria-label="menu-label" id="menu">
+        <div class="container">
+
+          <p class="section-subtitle text-center label-2">¡Ordena Ya!</p>
+
+          <h2 class="headline-1 section-title text-center">Menú</h2>
+
+          <ul class="grid-list">
+            <!-- 🧋 BEBIDAS -->
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder" style="--width:100; --height:100;">
+                  <img src="./assets/images/menu-frappecaramelo.png" width="100" height="100" loading="lazy" alt="Frappe caramelo" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Frappe caramelo</a></h3>
+                    <span class="span title-2">Q28</span>
+                  </div>
+                  <p class="card-text label-1">Café frío mezclado con leche, caramelo y crema batida.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-cafeconleche.png" width="100" height="100" loading="lazy" alt="Café con leche" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Café con leche</a></h3>
+                    <span class="span title-2">Q20</span>
+                  </div>
+                  <p class="card-text label-1">Café espresso con leche vaporizada y espuma ligera.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-cafe.png" width="100" height="100" loading="lazy" alt="Café" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Café</a></h3>
+                    <span class="span title-2">Q15</span>
+                  </div>
+                  <p class="card-text label-1">Café negro recién preparado, aroma intenso y sabor clásico.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-hotchocolate.png" width="100" height="100" loading="lazy" alt="Hot Chocolate" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Hot Chocolate</a></h3>
+                    <span class="span title-2">Q20</span>
+                  </div>
+                  <p class="card-text label-1">Chocolate caliente cremoso con leche y malvaviscos.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-agua.png" width="100" height="100" loading="lazy" alt="Agua" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Agua</a></h3>
+                    <span class="span title-2">Q15</span>
+                  </div>
+                  <p class="card-text label-1">Agua pura embotellada, fresca y natural.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-naranjada.png" width="100" height="100" loading="lazy" alt="Naranjada" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Naranjada con agua</a></h3>
+                    <span class="span title-2">Q16</span>
+                  </div>
+                  <p class="card-text label-1">Jugo natural de naranja mezclado con agua fría.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-limonada.png" width="100" height="100" loading="lazy" alt="Limonada" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Limonada</a></h3>
+                    <span class="span title-2">Q16</span>
+                  </div>
+                  <p class="card-text label-1">Refrescante mezcla de limón natural y agua fría.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-te.png" width="100" height="100" loading="lazy" alt="Té de manzanilla" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Té de manzanilla</a></h3>
+                    <span class="span title-2">Q15</span>
+                  </div>
+                  <p class="card-text label-1">Té natural de manzanilla, suave y relajante.</p>
+                </div>
+              </div>
+            </li>
+
+            <!-- 🍪 GALLETAS -->
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-chispas.png" width="100" height="100" loading="lazy" alt="Chispas de chocolate" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Chispas de chocolate</a></h3>
+                    <span class="span title-2">Q28</span>
+                  </div>
+                  <p class="card-text label-1">Galleta suave con trozos de chocolate derretido.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-mms.png" width="100" height="100" loading="lazy" alt="Galleta M&M's" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">M&M’s</a></h3>
+                    <span class="span title-2">Q32</span>
+                  </div>
+                  <p class="card-text label-1">Galleta con coloridos M&M’s y base de vainilla.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-cookiebutter.png" width="100" height="100" loading="lazy" alt="Cookie Butter" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Cookie Butter (Season)</a></h3>
+                    <span class="span title-2">Q35</span>
+                  </div>
+                  <p class="card-text label-1">Sabor de temporada con mantequilla de galleta y caramelo.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-pecanas.png" width="100" height="100" loading="lazy" alt="Chispas y pecanas" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Chispas y pecanas</a></h3>
+                    <span class="span title-2">Q35</span>
+                  </div>
+                  <p class="card-text label-1">Galleta de mantequilla con chispas de chocolate y trozos de pecanas.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-anicillos.png" width="100" height="100" loading="lazy" alt="Anicillos" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Anicillos</a></h3>
+                    <span class="span title-2">Q28</span>
+                  </div>
+                  <p class="card-text label-1">Galletas tradicionales con aroma de anís y textura crujiente.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-chocochoco.png" width="100" height="100" loading="lazy" alt="Chispas y galleta de chocolate" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Chispas y galleta de chocolate</a></h3>
+                    <span class="span title-2">Q32</span>
+                  </div>
+                  <p class="card-text label-1">Doble chocolate: masa y chispas con sabor intenso.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-encanelado.png" width="100" height="100" loading="lazy" alt="Encanelado" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Encanelado</a></h3>
+                    <span class="span title-2">Q20</span>
+                  </div>
+                  <p class="card-text label-1">Galleta espolvoreada con azúcar y canela, dulce y aromática.</p>
+                </div>
+              </div>
+            </li>
+
+            <!-- SALADO -->
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-bagle.png" width="100" height="100" loading="lazy" alt="Bagle de queso crema" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Bagle de queso crema</a></h3>
+                    <span class="span title-2">Q25</span>
+                  </div>
+                  <p class="card-text label-1">Bagel recién tostado con generosa porción de queso crema.</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+                <figure class="card-banner img-holder">
+                  <img src="./assets/images/menu-panini.png" width="100" height="100" loading="lazy" alt="Panini de la casa" class="img-cover">
+                </figure>
+                <div>
+                  <div class="title-wrapper">
+                    <h3 class="title-3"><a href="#" class="card-title">Panini de la casa</a></h3>
+                    <span class="span title-2">Q45</span>
+                  </div>
+                  <p class="card-text label-1">Panini con jamón, mozzarella, tomate, lechuga y papitas crujientes.</p>
+                </div>
+              </div>
+            </li>
+
+
+
+          </ul>
+
+          <p class="menu-text text-center">
+          - <span class="span">-</span> - <span class="span">-</span>
+          </p>
+
+          <a href="#" class="btn btn-primary">
+            <span class="text text-1">Regresar</span>
+
+            <span class="text text-2" aria-hidden="true">Regresar</span>
+          </a>
+
+          <img src="./assets/images/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
+            class="shape shape-2 move-anim">
+          <img src="./assets/images/shape-6.png" width="343" height="345" loading="lazy" alt="shape"
+            class="shape shape-3 move-anim">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TESTIMONIALS
+      -->
+
+      <section class="section testi text-center has-bg-image"
+        style="background-image: url('./assets/images/testimonial-bg.jpg')" aria-label="testimonials">
+        <div class="container">
+
+          <div class="quote">”</div>
+
+          <p class="headline-2 testi-text">
+            ----
+          </p>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+
+          <div class="profile">
+            <img src="./assets/images/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
+              class="img">
+
+            <p class="label-2 profile-name">El Chef</p>
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #RESERVATION
+      -->
+<!-- 
+      <section class="reservation">
+        <div class="container">
+
+          <div class="form reservation-form bg-black-10">
+
+            <form action="" class="form-left">
+
+              <h2 class="headline-1 text-center">Online Reservation</h2>
+
+              <p class="form-text text-center">
+                Booking request <a href="tel:+callme" class="link">+call me</a>
+                or fill out the order form
+              </p>
+
+              <div class="input-wrapper">
+                <input type="text" name="name" placeholder="Your Name" autocomplete="off" class="input-field">
+
+                <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off" class="input-field">
+              </div>
+
+              <div class="input-wrapper">
+
+                <div class="icon-wrapper">
+                  <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+
+                  <select name="person" class="input-field">
+                    <option value="1-person">1 Person</option>
+                    <option value="2-person">2 Person</option>
+                    <option value="3-person">3 Person</option>
+                    <option value="4-person">4 Person</option>
+                    <option value="5-person">5 Person</option>
+                    <option value="6-person">6 Person</option>
+                    <option value="7-person">7 Person</option>
+                  </select>
+
+                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div class="icon-wrapper">
+                  <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+
+                  <input type="date" name="reservation-date" class="input-field">
+
+                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div class="icon-wrapper">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                  <select name="person" class="input-field">
+                    <option value="08:00am">08 : 00 am</option>
+                    <option value="09:00am">09 : 00 am</option>
+                    <option value="010:00am">10 : 00 am</option>
+                    <option value="011:00am">11 : 00 am</option>
+                    <option value="012:00am">12 : 00 am</option>
+                    <option value="01:00pm">01 : 00 pm</option>
+                    <option value="02:00pm">02 : 00 pm</option>
+                    <option value="03:00pm">03 : 00 pm</option>
+                    <option value="04:00pm">04 : 00 pm</option>
+                    <option value="05:00pm">05 : 00 pm</option>
+                    <option value="06:00pm">06 : 00 pm</option>
+                    <option value="07:00pm">07 : 00 pm</option>
+                    <option value="08:00pm">08 : 00 pm</option>
+                    <option value="09:00pm">09 : 00 pm</option>
+                    <option value="10:00pm">10 : 00 pm</option>
+                  </select>
+
+                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+                </div>
+
+              </div>
+
+              <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1">Book A Table</span>
+
+                <span class="text text-2" aria-hidden="true">Book A Table</span>
+              </button>
+
+            </form>
+
+            <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')">
+
+              <h2 class="headline-1 text-center">-------</h2>
+
+              <p class="contact-label">---</p>
+
+              <a href="tel:+callme" class="body-1 contact-number hover-underline">----</a>
+
+              <div class="separator"></div>
+
+              <p class="contact-label">----</p>
+
+              <address class="body-4">
+                -----------
+              </address>
+
+              <p class="contact-label">Peaunts & Crumbs</p>
+
+              <p class="body-4">
+                --- <br>
+                11:00 am - 7:00 pm
+              </p>
+
+              <p class="contact-label"></p>
+
+              <p class="body-4">
+                --- <br>
+                ---
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+-->
+
+      <!-- === ONLINE RESERVATION (NUEVA) === -->
+<section id="reserva-online" class="reservation">
+  <div class="container">
+
+    <div class="form reservation-form bg-black-10">
+      <form id="frm-reserva" class="form-left" autocomplete="off">
+        <h2 class="headline-1 text-center">Reserva en línea</h2>
+        <p class="form-text text-center">Completa tus datos y elige tu mesa</p>
+
+        <!-- Datos del cliente -->
+        <div class="input-wrapper" style="gap:.5rem;">
+          <input id="r-nombre"  class="input-field" placeholder="Nombre completo" required>
+          <input id="r-telefono" class="input-field" placeholder="Teléfono" required>
+        </div>
+
+        <div class="input-wrapper" style="gap:.5rem;">
+          <input id="r-correo" type="email" class="input-field" placeholder="Correo" required>
+        </div>
+
+        <div class="input-wrapper" style="gap:.5rem;">
+      
+          <input id="r-dpi"    class="input-field" placeholder="DPI" inputmode="numeric" required>
+        </div>
+
+        <!-- sede -- capacidad  -- mesa -->
+        <div class="input-wrapper" style="gap:.5rem;">
+          <div class="icon-wrapper">
+            <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+            <select id="r-sede" class="input-field" required>
+              <option value="">Sede…</option>
+              <!-- se llena por : Pradera Concepción, Cayalá, Miraflores -->
+            </select>
+            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+          </div>
+
+          <div class="icon-wrapper">
+            <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+            <select id="r-capacidad" class="input-field" required>
+              <option value="">Personas…</option>
+              <!-- según mesas existentes de la sede -->
+            </select>
+            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+          </div>
+        </div>
+
+
+        <!-- Fecha -->
+        <div class="icon-wrapper">
+          <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+          <input id="r-fecha" type="date" class="input-field" required>
+          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+
+        <!-- hora inicio/fin exactas -->
+        <div class="input-wrapper" style="gap:.5rem;">
+          <div class="input-field" style="display:flex;gap:.5rem;align-items:center;padding:0;">
+            <label class="label-1" style="min-width:72px;">Inicio</label>
+            <select id="r-hh-i" class="input-field" style="flex:1;min-width:110px;"></select>
+            <select id="r-mm-i" class="input-field" style="flex:1;min-width:110px;"></select>
+          </div>
+          <div class="input-field" style="display:flex;gap:.5rem;align-items:center;padding:0;">
+            <label class="label-1" style="min-width:72px;">Fin</label>
+            <select id="r-hh-f" class="input-field" style="flex:1;min-width:110px;"></select>
+            <select id="r-mm-f" class="input-field" style="flex:1;min-width:110px;"></select>
+          </div>
+        </div>
+
+        <div class="icon-wrapper">
+          <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+          <select id="r-mesa" class="input-field" required>
+            <option value="">Mesa disponible…</option>
+            <!-- filtra por sede y capacidad y disponibilidad -->
+          </select>
+          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+
+        <!-- mensaje corto -->
+        <div>
+          <textarea id="r-msg" class="input-field" placeholder="Mensaje corto (opcional, máx. 150 caracteres)" maxlength="150"></textarea>
+          <p class="label-1" id="r-msg-count" style="text-align:right;margin-top:.25rem;"></p>
+        </div>
+
+        <button type="submit" class="btn btn-secondary">
+          <span class="text text-1">Reservar</span>
+          <span class="text text-2" aria-hidden="true">Reservar</span>
+        </button>
+
+        <p id="r-feedback" class="label-1" style="margin-top:.5rem;"></p>
+      </form>
+
+      <!-- lado derecho -->
+      <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')">
+        <h2 class="headline-1 text-center">¿Dudas?</h2>
+        <p class="contact-label">Teléfono</p>
+        <a href="tel:+50256892314" class="body-1 contact-number hover-underline">+502 5689-2314</a>
+        <div class="separator"></div>
+        <p class="contact-label">Horario</p>
+        <p class="body-4">Jueves a Domingo<br>11:00 am – 7:00 pm</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+      <!-- 
+        - #FEATURES
+      -->
+
+      <!-- 
+      <section class="section features text-center" aria-label="features">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Why we?</p>
+
+          <h2 class="headline-1 section-title">Our purpose?</h2>
+
+          <ul class="grid-list">
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-1.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Good Snoop Cookies</h3>
+
+                <p class="label-1 card-text">texto de descripción I guess.</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-2.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Fresh cookies</h3>
+
+                <p class="label-1 card-text">descripciónnnnnn.</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-3.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Skilled Chefs</h3>
+
+                <p class="label-1 card-text">El chef snoop es lo más .</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-4.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Event & Party</h3>
+
+                <p class="label-1 card-text">descripción</p>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <img src="./assets/images/shape-7.png" width="208" height="178" loading="lazy" alt="shape"
+            class="shape shape-1">
+
+          <img src="./assets/images/shape-8.png" width="120" height="115" loading="lazy" alt="shape"
+            class="shape shape-2">
+
+        </div>
+      </section>
+       -->
+
+
+
+
+      <!-- 
+        - #EVENT
+      -->
+
+      <section class="section event bg-black-10" aria-label="event">
+        <div class="container">
+
+          <p class="section-subtitle label-2 text-center">Peanuts & Crumbs</p>
+
+          <h2 class="section-title headline-1 text-center">Menú</h2>
+          <!-- 
+          <ul class="grid-list">
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event-1.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+                  <time class="publish-date label-2" datetime="2022-09-15">30/09/2025</time>
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Food, Cookies</p>
+
+                  <h3 class="card-title title-2 text-center">
+                    Flavour so good you’ll try to eat with your eyes.
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event-2.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+                  <time class="publish-date label-2" datetime="2022-09-08">01/10/2025</time>
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Good Coookies</p>
+
+                  <h3 class="card-title title-2 text-center">
+                    Flavour so good you’ll try to eat with your eyes.
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event-3.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+                  <time class="publish-date label-2" datetime="2022-09-03">03/09/2025</time>
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Recipie</p>
+
+                  <h3 class="card-title title-2 text-center">
+                    Flavour so good you’ll try to eat with your eyes.
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+           -->
+
+
+          <a href="#" class="btn btn-primary">
+            <span class="text text-1">Regresar</span>
+
+            <span class="text text-2" aria-hidden="true">Regresar</span>
+          </a>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+  - #FOOTER
+-->
+<footer class="footer section has-bg-image text-center"
+  style="background-image: url('./assets/images/footer-bg.jpg')">
+  <div class="container">
+
+    <div class="footer-top grid-list">
+
+      <!-- BLOQUE PRINCIPAL DEL FOOTER -->
+      <div class="footer-brand has-before has-after">
+
+        <!-- logo -->
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.png" width="160" height="50" loading="lazy" alt="Snoop home">
+        </a>
+
+        <!-- Separadores -->
+        <div class="wrapper" style="margin: 1rem 0;">
+          <div class="separator"></div>
+          <div class="separator"></div>
+          <div class="separator"></div>
+        </div>
+
+        <!-- LOGIN (solo botón Ingresar) -->
+        <div id="login-card" class="form" style="max-width:420px;margin:0 auto;">
+          <h3 class="title-2">Ingreso al sistema</h3>
+
+          <div class="input-wrapper" style="gap:.75rem;margin-top:.5rem;">
+            <input id="login-usuario" type="text" placeholder="Usuario" autocomplete="username" class="input-field">
+            <input id="login-pass" type="password" placeholder="Contraseña" autocomplete="current-password" class="input-field">
+          </div>
+
+          <div class="auth-actions">
+            <button type="button" id="btn-login" class="btn btn-secondary">
+              <span class="text text-1">Ingresar</span>
+              <span class="text text-2" aria-hidden="true">Ingresar</span>
+            </button>
+          </div>
+
+          <p id="login-status" class="label-1" style="margin-top:.5rem;"></p>
+        </div>
+      </div>
+
+      <!-- ENLACES DE NAVEGACIÓN -->
+      <ul class="footer-list">
+        <li><a href="#" class="label-2 footer-link hover-underline">Home</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">Menus</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">Our Chefs</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">Reservation</a></li>
+      </ul>
+
+      <ul class="footer-list">
+        <li><a href="#" class="label-2 footer-link hover-underline">Instagram</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">TikTok</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">Youtube</a></li>
+        <li><a href="#" class="label-2 footer-link hover-underline">Google Map</a></li>
+      </ul>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        © Copyright 2025 Peanuts & Crumbs
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+  <button id="btnPing" class="btn btn-secondary">Probar conexión</button>
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+  <script>
+(function(){
+  const API = 'http://localhost:3000';
+
+  // --- referencias  ---
+  const selSede   = document.getElementById('r-sede');
+  const selCap    = document.getElementById('r-capacidad');
+  const selMesa   = document.getElementById('r-mesa');
+  const inpFecha  = document.getElementById('r-fecha');
+  const hhIni     = document.getElementById('r-hh-i');
+  const mmIni     = document.getElementById('r-mm-i');
+  const hhFin     = document.getElementById('r-hh-f');
+  const mmFin     = document.getElementById('r-mm-f');
+  const txtMsg    = document.getElementById('r-msg');
+  const msgCount  = document.getElementById('r-msg-count');
+  const form      = document.getElementById('frm-reserva');
+  const feedback  = document.getElementById('r-feedback');
+
+  if (!form) return;
+
+  // --
+  function toISO(fecha, hh, mm){
+    if (!fecha || !hh || !mm) return null;
+    const d = new Date(`${fecha}T${hh.padStart(2,'0')}:${mm.padStart(2,'0')}:00`);
+    return d.toISOString();
+  }
+
+  // --- con esto se poblaron las sedes 
+  async function loadSedes(){
+    selSede.innerHTML = '<option value="">Sede…</option>';
+    const r = await fetch(`${API}/api/sedes`);
+    const data = await r.json();
+    for (const s of data){
+      const op = document.createElement('option');
+      op.value = s.id;
+      op.textContent = s.nombre;
+      selSede.appendChild(op);
+    }
+  }
+
+  // --- la capacidad de la sede - pner 
+  async function loadCapacidades(){
+    selCap.innerHTML  = '<option value="">Personas…</option>';
+    selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+    const sede_id = selSede.value;
+    if (!sede_id) return;
+    const r = await fetch(`${API}/api/capacidades?sede_id=${encodeURIComponent(sede_id)}`);
+    const caps = await r.json(); 
+    for (const row of caps){
+      const op = document.createElement('option');
+      op.value = row.capacidad;
+      op.textContent = row.capacidad;
+      selCap.appendChild(op);
+    }
+  }
+
+  // --- selects de hora/minuto ---
+  function fillTimeSelects(){
+    const OPEN = 11, CLOSE = 19;
+    function fillHH(sel){
+      sel.innerHTML = '<option value="">HH…</option>';
+      for (let h=OPEN; h<=CLOSE; h++){
+        const v = h.toString().padStart(2,'0');
+        const label = (h===0?'12 am': h<12? `${h} am`: h===12? '12 pm': `${h-12} pm`);
+        const op = document.createElement('option');
+        op.value = v;
+        op.textContent = label;
+        sel.appendChild(op);
+      }
+    }
+    function fillMM(sel){
+      sel.innerHTML = '<option value="">MM…</option>';
+      for (let m=0; m<60; m++){
+        const v = m.toString().padStart(2,'0');
+        const op = document.createElement('option');
+        op.value = v;
+        op.textContent = v;
+        sel.appendChild(op);
+      }
+    }
+    fillHH(hhIni); fillHH(hhFin);
+    fillMM(mmIni); fillMM(mmFin);
+  }
+
+  // --- consultar mesas disponibles esto con: fn_mesas_disponibles del back ---
+  async function loadMesasDisponibles(){
+    selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+
+    const sede_id   = selSede.value;
+    const capacidad = selCap.value;
+    const inicioISO = toISO(inpFecha.value, hhIni.value, mmIni.value);
+    const finISO    = toISO(inpFecha.value, hhFin.value, mmFin.value);
+
+    if (!sede_id || !capacidad || !inicioISO || !finISO) return;
+
+    // validar rango
+    if (new Date(finISO) <= new Date(inicioISO)){
+      feedback.textContent = 'La hora de fin debe ser posterior a la de inicio.';
+      return;
+    } else {
+      feedback.textContent = '';
+    }
+
+    const url = new URL(`${API}/api/mesas-disponibles`);
+    url.searchParams.set('sede_id',   sede_id);
+    url.searchParams.set('capacidad', capacidad);
+    url.searchParams.set('inicio',    inicioISO);
+    url.searchParams.set('fin',       finISO);
+    console.log('URL disponibilidad =>', url.toString());
+
+    const r = await fetch(url);
+    if (!r.ok){ feedback.textContent = 'No se pudo consultar disponibilidad.'; return; }
+
+    const mesas = await r.json();
+      if (!Array.isArray(mesas) || mesas.length === 0) {
+        selMesa.innerHTML = '<option value="">(Sin mesas libres)</option>';
+        return;
+      }
+
+      for (const m of mesas) {
+        // primer campo que existe
+        const valor = m.id ?? m.id_mesa ?? m.mesa_id ?? m.codigo;
+        const etiqueta = m.codigo ? `Mesa ${m.codigo}` : `Mesa ${valor}`;
+        if (valor == null) continue;
+
+        const op = document.createElement('option');
+        op.value = valor;
+        op.textContent = etiqueta;
+        selMesa.appendChild(op);
+      }
+
+  }
+
+  // --- el counter del msj---
+  txtMsg?.addEventListener('input', () => {
+    const n = (txtMsg.value||'').length;
+    msgCount.textContent = `${n}/150`;
+  });
+
+  // --- submit de crear la reserva---
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    feedback.textContent = '';
+
+    const nombre   = document.getElementById('r-nombre').value.trim();
+    const telefono = document.getElementById('r-telefono').value.trim();
+    const correo   = document.getElementById('r-correo').value.trim();
+    const dpi      = document.getElementById('r-dpi').value.trim();
+
+    const sede_id  = Number(selSede.value||0);
+    const capacidad= Number(selCap.value||0);
+    const mesa_id  = Number(selMesa.value||0);
+
+    const inicioISO = toISO(inpFecha.value, hhIni.value, mmIni.value);
+    const finISO    = toISO(inpFecha.value, hhFin.value, mmFin.value);
+    const observaciones = (txtMsg.value||'').trim();
+
+    //validar todo
+    if (!nombre || !telefono || !correo || !dpi){
+      feedback.textContent = 'Completa tus datos.';
+      return;
+    }
+    if (!sede_id || !capacidad || !mesa_id){
+      feedback.textContent = 'Selecciona sede, personas y mesa.';
+      return;
+    }
+    if (!inicioISO || !finISO || new Date(finISO) <= new Date(inicioISO)){
+      feedback.textContent = 'Verifica fecha y horas (fin > inicio).';
+      return;
+    }
+
+    try{
+      const r = await fetch(`${API}/api/reservas`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          nombre, telefono, correo, dpi,
+          sede_id, mesa_id,
+          inicio: inicioISO, fin: finISO,
+          capacidad, observaciones
+        })
+      });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      feedback.textContent = `Reserva #${data.id} creada ✅`;
+      form.reset();
+      msgCount.textContent = '0/150';
+      selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+    } catch (e){
+      feedback.textContent = (e && e.error) ? e.error : 'No se pudo crear la reserva';
+    }
+  });
+
+  // ---  ---
+  (function init(){
+    // fecha mínima = hoy (obvio antes no se puede pero depende de PG)
+    const hoy = new Date().toISOString().slice(0,10);
+    inpFecha.min = hoy;
+
+    fillTimeSelects();
+    loadSedes().catch(()=>{});
+    // recalcula disp
+    selSede.addEventListener('change', async () => { await loadCapacidades(); await loadMesasDisponibles(); });
+    selCap .addEventListener('change', loadMesasDisponibles);
+    [inpFecha, hhIni, mmIni, hhFin, mmFin].forEach(el => el.addEventListener('change', loadMesasDisponibles));
+  })();
+  
+})();
+</script>
+
+
+
+</body>
+
+</html>
+

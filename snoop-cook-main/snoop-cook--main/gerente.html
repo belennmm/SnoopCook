@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Panel Gerente — Peanuts & Crumbs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body class="bg-black-10">
+<header class="header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="./snoop-menu.html" class="logo">
+      <img src="./assets/images/logo.png" width="160" height="50" alt="logo" />
+    </a>
+
+    <a
+      id="btn-logout"
+      class="btn btn-primary"
+      href="./snoop-menu.html#login"
+      style="position:fixed; top:20px; right:24px; z-index:1000; display:inline-flex; width:auto; padding:.6rem 1rem;"
+      onclick="
+        try{ localStorage.removeItem('token'); localStorage.removeItem('rol'); localStorage.removeItem('nombre_usuario'); }catch(e){}
+        const u = new URL('./snoop-menu.html#login', location.href).href;
+        try{ window.location.replace(u); }catch(e){ window.location.href = u; }
+        return false;
+      "
+    >Salir</a>
+  </div>
+</header>
+
+
+<main class="section">
+  <div class="container wrap-narrow">
+    <h1 class="headline-1">Panel del Gerente</h1>
+    <p id="user-info" class="label-1"></p>
+
+    <!-----create usuarios -->
+    <section class="service-card card" style="margin-top:1rem;">
+      <h2 class="title-2">Crear usuarios</h2>
+      <div class="input-wrapper" style="gap:.5rem;margin-top:.5rem;">
+        <input id="nuevo-usuario" class="input-field" placeholder="Usuario" autocomplete="username">
+        <input id="nuevo-pass" class="input-field" type="password" placeholder="Contraseña" autocomplete="new-password">
+        <select id="nuevo-rol" class="input-field">
+          <option value="empleado">Empleado</option>
+          <option value="gerente">Gerente</option>
+        </select>
+      </div>
+      <button id="btn-crear-usuario" class="btn btn-secondary" style="margin-top:.5rem;">Crear</button>
+      <p id="usr-msg" class="label-1"></p>
+    </section>
+
+    <!----- los tops globales  -->
+    <section class="service-card card" style="margin-top:1rem;">
+      <h2 class="title-1">Tops</h2>
+
+      <div class="cards-row" style="margin-top:.75rem;">
+        <div class="service-card card">
+          <h3 class="title-3">Top 10 productos</h3>
+          <button id="g-top-prod" class="btn btn-secondary" style="margin-top:.5rem;">Ver</button>
+          <pre id="g-top-prod-out" class="body-4" style="white-space:pre-wrap;margin-top:.5rem;"></pre>
+        </div>
+
+        <div class="service-card card">
+          <h3 class="title-3">Top 10 clientes</h3>
+          <button id="g-top-cli" class="btn btn-secondary" style="margin-top:.5rem;">Ver</button>
+          <pre id="g-top-cli-out" class="body-4" style="white-space:pre-wrap;margin-top:.5rem;"></pre>
+        </div>
+
+        <div class="service-card card">
+          <h3 class="title-3">Top 5 reservas + favs</h3>
+          <button id="g-top-res" class="btn btn-secondary" style="margin-top:.5rem;">Ver</button>
+          <pre id="g-top-res-out" class="body-4" style="white-space:pre-wrap;margin-top:.5rem;"></pre>
+        </div>
+
+        <div class="service-card card">
+          <h3 class="title-3">Sucursales</h3>
+          <button id="g-suc" class="btn btn-secondary" style="margin-top:.5rem;">Reservas Detalles</button>
+          <pre id="g-suc-out" class="body-4" style="white-space:pre-wrap;margin-top:.5rem;"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- los críticos -->
+    <section class="service-card card" style="margin-top:1rem;">
+      <h2 class="title-2">Insumos críticos</h2>
+      <div class="filters">
+        <button id="g-insumos" class="btn btn-secondary">Consultar</button>
+        <input id="g-sede" class="input-field" placeholder="ID sede (opcional)">
+        <input id="g-dias" class="input-field" placeholder="Días alerta (opcional)">
+      </div>
+      <pre id="g-insumos-out" class="body-4" style="white-space:pre-wrap;margin-top:.5rem;"></pre>
+    </section>
+
+    <!-- inserts  directo de inventario -->
+    <section class="service-card card" style="margin-top:1rem;">
+      <h2 class="title-2">Ingreso directo de inventario (Gerente)</h2>
+
+      <div class="input-wrapper"
+           style="display:grid;gap:.5rem;grid-template-columns:repeat(3,minmax(180px,1fr));margin-top:.5rem;">
+        <select id="ing-sede" class="input-field"><option value="">Sede…</option></select>
+        <select id="ing-proveedor" class="input-field"><option value="">Proveedor…</option></select>
+        <select id="ing-ingrediente" class="input-field"><option value="">Ingrediente…</option></select>
+
+        <input id="ing-cantidad" class="input-field" inputmode="decimal" placeholder="Cantidad (número)">
+        <select id="ing-estado" class="input-field">
+          <option value="fresco">fresco</option>
+          <option value="congelado">congelado</option>
+          <option value="en cuarentena">en cuarentena</option>
+        </select>
+
+        <input id="ing-fecha" type="date" class="input-field" placeholder="Fecha de ingreso (opcional)">
+        <input id="ing-venc"  type="date" class="input-field" placeholder="Fecha de vencimiento">
+      </div>
+
+      <div style="display:flex;gap:.75rem;justify-content:flex-end;margin-top:.75rem;">
+        <button id="btn-ingresar-lote" class="btn btn-secondary">
+          <span class="text text-1">Ingresar lote</span>
+          <span class="text text-2" aria-hidden="true">Ingresar lote</span>
+        </button>
+      </div>
+
+      <p id="ing-msg" class="label-1" style="margin-top:.25rem;"></p>
+    </section>
+  </div>
+</main>
+
+ <script type="module">
+  
+(function(){
+  const API = 'http://localhost:3000';
+
+  // --- Guard: solo gerente ---
+  try {
+    const rol = localStorage.getItem('rol') || '';
+    const token = localStorage.getItem('token') || '';
+    if (rol !== 'gerente' || !token) {
+      // 
+      location.replace('./snoop-menu.html#login');
+      return;
+    }
+    // ´puts  quién es
+    const nombre = localStorage.getItem('nombre_usuario') || '';
+    const ui = document.getElementById('user-info');
+    if (ui) ui.textContent = `Sesión: ${nombre} (${rol})`;
+  } catch(e) {}
+
+  // -----------crear usuarios al darle el clcik  ----
+  const btnCrear = document.getElementById('btn-crear-usuario');
+  const msg = document.getElementById('usr-msg');
+
+  if (btnCrear) {
+    btnCrear.addEventListener('click', async () => {
+      const nombre_usuario = document.getElementById('nuevo-usuario').value.trim();
+      const pass           = document.getElementById('nuevo-pass').value;
+      const rol            = document.getElementById('nuevo-rol').value;
+
+      if (!nombre_usuario || !pass) {
+        msg.textContent = 'Llena usuario y contraseña';
+        return;
+      }
+
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          msg.textContent = 'Sesión expirada. Vuelve a ingresar.';
+          return;
+        }
+
+        // para back pg
+        const res = await fetch(`${API}/api/usuarios`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ nombre_usuario, pass, rol })
+        });
+
+        // lo muestra 
+        console.log('POST /api/usuarios -> status', res.status);
+
+        const data = await res.json();
+        if (!res.ok) {
+          msg.textContent = data.error || `Error (${res.status})`;
+          return;
+        }
+
+        msg.textContent = `Creado: ${data.nombre_usuario} (${data.rol}) ✅`;
+        document.getElementById('nuevo-usuario').value = '';
+        document.getElementById('nuevo-pass').value = '';
+        document.getElementById('nuevo-rol').value = 'empleado';
+      } catch (e) {
+        console.error('Fallo creando usuario:', e);
+        msg.textContent = 'Error de red';
+      }
+    });
+  }
+})();
+</script>
+
+<script>
+(() => {
+  const API = 'http://localhost:3000';
+  const fmtQ = v => 'Q' + Number(v||0).toFixed(2);
+
+  // top products  
+  document.getElementById('g-top-prod')?.addEventListener('click', async () => {
+    const out = document.getElementById('g-top-prod-out');
+    out.textContent = 'Cargando...';
+    try{
+      const r = await fetch(`${API}/api/gerente/top-productos`);
+      const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent = data.map((x,i)=>`${i+1}. ${x.producto} — ${x.total_vendido}`).join('\n') || '(sin datos)';
+    }catch(e){ out.textContent = (e&&e.error)||'Error'; }
+  });
+
+  // el top de clientes por pedidos - gods
+  document.getElementById('g-top-cli')?.addEventListener('click', async () => {
+    const out = document.getElementById('g-top-cli-out');
+    out.textContent = 'Cargando...';
+    try{
+      const r = await fetch(`${API}/api/gerente/top-clientes`); const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent = data.map((x,i)=>`${i+1}. ${x.cliente} — ${x.total_pedidos} pedidos`).join('\n') || '(sin datos)';
+    }catch(e){ out.textContent = (e&&e.error)||'Error'; }
+  });
+
+  // el tops reservas plus favoritos
+  document.getElementById('g-top-res')?.addEventListener('click', async () => {
+    const out = document.getElementById('g-top-res-out');
+    out.textContent = 'Cargando...';
+    try{
+      const r = await fetch(`${API}/api/gerente/top-clientes-reservas`); const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent = data.map((x,i)=>(
+        `${i+1}. ${x.cliente} — ${x.total_reservas} reservas\n`+
+        `   Bebida : ${x.fav_bebida  ?? '(sin favorito)'}\n`+
+        `   Galleta: ${x.fav_galleta ?? '(sin favorito)'}\n`+
+        `   Salado : ${x.fav_salado  ?? '(sin favorito)'}`
+      )).join('\n\n') || '(sin datos)';
+    }catch(e){ out.textContent = (e&&e.error)||'Error'; }
+  });
+
+  // por sede favs
+    // el  por sede
+  document.getElementById('g-suc')?.addEventListener('click', async () => {
+    const out = document.getElementById('g-suc-out');
+    out.textContent = 'Cargando...';
+    try{
+      const r = await fetch(`${API}/api/gerente/sucursales`); const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent = data.map((x,i)=>(
+        `${i+1}. ${x.sede}\n`+
+        `   Reservas: ${x.total_reservas}  Pedidos: ${x.total_pedidos}  Ventas: ${fmtQ(x.total_ventas)}`
+      )).join('\n\n') || '(sin datos)';
+    }catch(e){ out.textContent = (e&&e.error)||'Error'; }
+  });
+
+   // los críticos
+  document.getElementById('g-insumos')?.addEventListener('click', async () => {
+    const out  = document.getElementById('g-insumos-out');
+    const sede = document.getElementById('g-sede').value.trim();
+    const dias = document.getElementById('g-dias').value.trim();
+    out.textContent = 'Cargando...';
+    try{
+      const url = new URL(`${API}/api/gerente/insumos-criticos`);
+      if (sede) url.searchParams.set('sede', sede);
+      if (dias) url.searchParams.set('dias', dias);
+      const r = await fetch(url); const data = await r.json();
+      if (!r.ok) throw data;
+
+      out.textContent = data.length
+        ? data.map(x =>
+            `${x.sede} • ${x.ingrediente}\n`+
+            `   Stock: ${Number(x.cantidad_actual)} / min ${Number(x.stock_minimo)}\n`+
+            `   Lotes totales: ${Number(x.total_lotes)}\n`+
+            `   Vence: ${x.vencimiento_mas_cercano ?? 'N/D'} `+
+            `(en ${x.dias_para_vencer ?? 'N/D'} días)\n`+
+            `   Estado: ${x.estado}`
+          ).join('\n\n')
+        : '(sin insumos críticos)';
+    }catch(e){ out.textContent = (e&&e.error)||'Error'; }
+  });
+
+  
+
+  
+})();
+</script>
+
+<script>
+(function(){
+  const API = 'http://localhost:3000';
+  const $ = (id)=>document.getElementById(id);
+
+  async function loadCombos(){
+    // sedes
+    const rs = await fetch(`${API}/api/sedes`);   const sedes = await rs.json();
+    $('ing-sede').innerHTML = '<option value="">Sede…</option>' +
+      sedes.map(s=>`<option value="${s.id}">${s.nombre}</option>`).join('');
+
+    // proveedores
+    const rp = await fetch(`${API}/api/proveedores`); const provs = await rp.json();
+    $('ing-proveedor').innerHTML = '<option value="">Proveedor…</option>' +
+      provs.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join('');
+
+    // ingredientes
+    const ri = await fetch(`${API}/api/ingredientes`); const ings = await ri.json();
+    $('ing-ingrediente').innerHTML = '<option value="">Ingrediente…</option>' +
+      ings.map(i=>`<option value="${i.id}" data-unid="${i.unidad||''}">${i.nombre}${i.unidad?` (${i.unidad})`:''}</option>`).join('');
+
+    // defaults de fecha
+    const hoy = new Date().toISOString().slice(0,10);
+    $('ing-fecha').value = hoy;
+    $('ing-venc').min = hoy;
+  }
+
+  $('btn-ingresar-lote')?.addEventListener('click', async ()=>{
+    const id_sede = Number(($('ing-sede').value||0));
+    const id_proveedor = Number(($('ing-proveedor').value||0));
+    const ingSel = $('ing-ingrediente');
+    const id_ingrediente = Number((ingSel.value||0));
+    const cantidad = Number(($('ing-cantidad').value||'').replace(',','.'));
+    const estado_lote = $('ing-estado').value;
+    const ingreso = $('ing-fecha').value || null;
+    const vencimiento = $('ing-venc').value;
+    const msg = $('ing-msg'); msg.textContent = '';
+
+    if (!id_sede || !id_proveedor || !id_ingrediente || !cantidad || cantidad<=0 || !vencimiento){
+      msg.textContent = 'Completa sede, proveedor, ingrediente, cantidad (>0) y vencimiento.'; return;
+    }
+
+    // para confirmar que se quiere poner 
+    const ingName = ingSel.options[ingSel.selectedIndex].text;
+    const sedeName = $('ing-sede').options[$('ing-sede').selectedIndex].text;
+    const provName = $('ing-proveedor').options[$('ing-proveedor').selectedIndex].text;
+    const resumen =
+      `¿Confirmar ingreso?\n\n` +
+      `Ingrediente: ${ingName}\n` +
+      `Cantidad: ${cantidad}\n` +
+      `Sede: ${sedeName}\n` +
+      `Proveedor: ${provName}\n` +
+      `Estado lote: ${estado_lote}\n` +
+      `Ingreso: ${ingreso || '(hoy)'}\n` +
+      `Vencimiento: ${vencimiento}`;
+    if (!window.confirm(resumen)) return;
+
+    try{
+      const r = await fetch(`${API}/api/inventario/ingreso-directo`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ id_ingrediente, id_sede, id_proveedor, cantidad, vencimiento, estado_lote, ingreso })
+      });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      msg.textContent = `Lote ingresado correctamente (ID ${data.id_lote}).`;
+      $('ing-cantidad').value = '';
+    }catch(e){
+      msg.textContent = (e && e.error) ? e.error : 'Error ingresando lote';
+    }
+  });
+
+  loadCombos().catch(()=>{});
+})();
+</script>
+
+
+</body>
+</html>
+
+
+<style>
+  
+  .header { position: static !important; z-index: auto !important; }
+</style>
+
+
+<style>
+  
+  .wrap-narrow {max-width: 1150px; margin: 0 auto; padding: 0 1rem;}
+
+  /* tarjetas en grilla, separadas de los bordes */
+  .cards-row {display: grid; gap: 1rem;}
+  /* 1 col en móvil, 2 en tablets, 4 en desktop */
+  @media (min-width:640px){ .cards-row{grid-template-columns: repeat(2, minmax(0,1fr));} }
+  @media (min-width:1024px){ .cards-row{grid-template-columns: repeat(4, minmax(0,1fr));} }
+
+  /* consistencia visual de las tarjetas internas */
+  .card {padding: 1rem;}
+
+  /* filtros de Insumos críticos un poquito más grandes */
+  .filters {display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; margin-top:.5rem;}
+  .filters .input-field {max-width: 220px;} /* antes 140/160 */
+</style>

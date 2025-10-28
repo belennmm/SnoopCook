@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Panel Empleado — Peanuts & Crumbs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body class="bg-black-10">
+  <header class="header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="./snoop-menu.html" class="logo">
+      <img src="./assets/images/logo.png" width="160" height="50" alt="logo" />
+    </a>
+
+    <!-- Salir global-->
+    <a
+      id="btn-logout"
+      class="btn btn-primary"
+      href="./snoop-menu.html#login"
+      onclick="(function(u){
+        try{ localStorage.removeItem('token'); localStorage.removeItem('rol'); localStorage.removeItem('nombre_usuario'); }catch(e){}
+        try{ window.location.replace(u); }catch(e){ window.location.href = u; }
+        return false;
+      })( new URL('./snoop-menu.html#login', location.href).href );"
+    >Salir</a>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+      <h1 class="headline-1">Panel del Empleado</h1>
+      
+    </header>
+
+<!-- res con-->
+<section class="service-card" style="padding:8rem;margin-bottom:1.25rem">
+  <h2 class="title-3">Reservas / Visitas</h2>
+
+  <!-- una mesa específica -->
+  <div class="input-wrapper" style="gap:.5rem;margin-top:.5rem;">
+    <input id="q-mesa" class="input-field" inputmode="numeric" placeholder="ID Mesa (número)">
+  </div>
+
+  <!-- 2 clumns -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:.75rem;">
+    <!-- izq -->
+    <div style="border:1px solid #333;border-radius:12px;padding:1rem;">
+      <button id="btn-buscar-estado" class="btn btn-secondary">
+        <span class="text text-1">Estado actual</span>
+        <span class="text text-2" aria-hidden="true">Estado actual</span>
+      </button>
+      <pre id="estado-mesa" class="body-4" style="white-space:pre-wrap;margin-top:.75rem;min-height:3.5rem;"></pre>
+    </div>
+
+    <!-- derecha: isitas de hoy -->
+    <div style="border:1px solid #333;border-radius:12px;padding:1rem;">
+      <button id="btn-ver-visitas" class="btn btn-primary">
+        <span class="text text-1">Ver Reservas</span>
+        <span class="text text-2" aria-hidden="true">Ver visitas de hoy</span>
+      </button>
+      <pre id="visitas-out" class="body-4" style="white-space:pre-wrap;margin-top:.75rem;min-height:3.5rem;"></pre>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================================================== -->
+<!--VISITA POR WALK-IN (solo un empleado puede logearse)-->
+<section id="walkin-empleado" 
+  class="reservation" 
+  style="margin-top:22rem; margin-bottom:3rem; padding-top:1rem;">
+  <div class="form reservation-form bg-black-10">
+
+    <!-- forms-->
+    <form id="frm-walkin" class="form-left" autocomplete="off">
+      <h2 class="headline-2 text-center">Visita por Walk-in</h2>
+      <p class="form-text text-center">Registra al cliente y asigna una mesa</p>
+
+      <!-- data del cliente -->
+      <div class="input-wrapper" style="gap:.5rem;">
+        <input id="w-nombre"  class="input-field" placeholder="Nombre completo" required>
+        <input id="w-telefono" class="input-field" placeholder="Teléfono" required>
+      </div>
+
+      <div class="input-wrapper" style="gap:.5rem;">
+        <input id="w-correo" type="email" class="input-field" placeholder="Correo (opcional)">
+      </div>
+
+      <div class="input-wrapper" style="gap:.5rem;">
+        <input id="w-dpi" class="input-field" placeholder="DPI" inputmode="numeric" required>
+      </div>
+
+      <!-- Sede / Capacidad -->
+      <div class="input-wrapper" style="gap:.5rem;">
+        <div class="icon-wrapper">
+          <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+          <select id="w-sede" class="input-field" required>
+            <option value="">Sede…</option>
+          </select>
+          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+
+        <div class="icon-wrapper">
+          <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+          <select id="w-capacidad" class="input-field" required>
+            <option value="">Personas…</option>
+          </select>
+          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Fecha -->
+      <div class="icon-wrapper">
+        <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+        <input id="w-fecha" type="date" class="input-field" required>
+        <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+      </div>
+
+      <!-- Hora inicio (solo inicio, sin fin bc aquí es walk-in) -->
+      <div class="input-wrapper" style="gap:.5rem;">
+        <div class="input-field" style="display:flex;gap:.5rem;align-items:center;padding:0;">
+          <label class="label-1" style="min-width:72px;">Inicio</label>
+          <select id="w-hh-i" class="input-field" style="flex:1;min-width:110px;"></select>
+          <select id="w-mm-i" class="input-field" style="flex:1;min-width:110px;"></select>
+        </div>
+      </div>
+
+      <!-- Mesa dips -->
+      <div class="icon-wrapper">
+        <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+        <select id="w-mesa" class="input-field" required>
+          <option value="">Mesa disponible…</option>
+        </select>
+        <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+      </div>
+
+      <!-- ojos -->
+      <div>
+        <textarea id="w-obs" class="input-field" placeholder="Observaciones (opcional, máx. 150 caracteres)" maxlength="150"></textarea>
+        <p class="label-1" id="w-obs-count" style="text-align:right;margin-top:.25rem;">0/150</p>
+      </div>
+
+      <button type="submit" class="btn btn-secondary">
+        <span class="text text-1">Registrar Walk-in</span>
+        <span class="text text-2" aria-hidden="true">Registrar Walk-in</span>
+      </button>
+
+      <p id="w-feedback" class="label-1" style="margin-top:.5rem;"></p>
+    </form>
+
+    <!--derecho info -->
+    <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')">
+      <h2 class="headline-3 text-center">Atención presencial</h2>
+      <p class="contact-label">Sugerencia</p>
+      <p class="body-4">Verifica la disponibilidad antes de asignar la mesa.</p>
+      <div class="separator"></div>
+      <p class="contact-label">Horario del local</p>
+      <p class="body-4">Jueves a Domingo<br>11:00 am – 7:00 pm</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- toma pedido -->
+<section class="service-card" style="padding:1rem;margin-top:1.25rem;">
+  <h2 class="title-3">Tomar pedido</h2>
+
+  <!-- selects -->
+  <div class="input-wrapper" style="gap:.5rem;margin-top:.75rem;display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));">
+    <select id="sel-mesa" class="input-field">
+      <option value="">Mesa…</option>
+    </select>
+
+    <select id="sel-producto" class="input-field">
+      <option value="">Producto del menú…</option>
+    </select>
+
+    <input id="sel-cantidad" type="number" min="1" value="1" class="input-field" placeholder="Cantidad">
+
+    <button id="btn-add-item" class="btn btn-secondary">
+      <span class="text text-1">Agregar</span>
+      <span class="text text-2" aria-hidden="true">Agregar</span>
+    </button>
+  </div>
+
+  <!-- como carrito -->
+  <div style="overflow:auto;margin-top:.75rem;">
+    <table class="body-4" style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:.5rem;border-bottom:1px solid #444">Producto</th>
+          <th style="text-align:right;padding:.5rem;border-bottom:1px solid #444">P. Unit.</th>
+          <th style="text-align:right;padding:.5rem;border-bottom:1px solid #444">Cant.</th>
+          <th style="text-align:right;padding:.5rem;border-bottom:1px solid #444">Subtotal</th>
+          <th style="padding:.5rem;border-bottom:1px solid #444"></th>
+        </tr>
+      </thead>
+      <tbody id="cart-body"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right;padding:.5rem;border-top:1px solid #444;">Total</td>
+          <td style="text-align:right;padding:.5rem;border-top:1px solid #444;"><span id="cart-total">Q0.00</span></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div style="display:flex;gap:.75rem;justify-content:flex-end;margin-top:.75rem;">
+    <button id="btn-clear-cart" class="btn btn-primary">Vaciar</button>
+    <button id="btn-submit-order" class="btn btn-secondary">Realizar pedido</button>
+  </div>
+
+  <p id="order-msg" class="label-1" style="margin-top:.25rem;"></p>
+</section>
+
+<!-- ------------------ MESA -------------------->
+<!-- estado de mesa (actualizar) -->
+
+<section class="service-card" style="padding:1rem;margin-top:1.25rem;">
+  <h2 class="title-3">Actualizar estado de mesa</h2>
+
+  <!-- look mesa -->
+  <div class="input-wrapper" style="gap:.5rem;margin-top:.5rem;">
+    <input id="st-mesa-id" class="input-field" inputmode="numeric" placeholder="ID mesa">
+    <button id="st-load" class="btn btn-secondary">
+      <span class="text text-1">Cargar</span>
+      <span class="text text-2" aria-hidden="true">Cargar</span>
+    </button>
+  </div>
+
+  <!-- actual + cambio -->
+  <div id="st-panel" style="display:none;margin-top:.75rem;">
+    <p id="st-info" class="label-1" style="margin-bottom:.5rem;"></p>
+
+    <div class="input-wrapper" style="gap:.5rem;">
+      <div class="icon-wrapper" title="Nuevo estado">
+        <ion-icon name="restaurant-outline" aria-hidden="true"></ion-icon>
+        <select id="st-select" class="input-field">
+           <option value="pendiente">pendiente (reservada / en proceso)</option>
+          <option value="entregado">entregado (servida, ocupada)</option>
+          <option value="finalizada">finalizada (liberar mesa)</option>
+           <option value="cancelada">cancelada (liberar mesa)</option>
+        </select>
+        <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+      </div>
+
+      <button id="st-apply" class="btn btn-secondary">
+        <span class="text text-1">Actualizar</span>
+        <span class="text text-2" aria-hidden="true">Actualizar</span>
+      </button>
+    </div>
+
+    <p id="st-msg" class="label-1" style="margin-top:.5rem;"></p>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Favoritos por categoría</h3>
+  <div class="row">
+    <input id="fav-dpi" class="input-field" placeholder="DPI">
+    <button id="btn-ver-favs" class="btn btn-secondary">Ver favoritos</button>
+    <button id="btn-recalc-favs" class="btn btn-primary">Recalcular</button>
+
+  </div>
+  <pre id="fav-out" class="body-4" style="white-space:pre-wrap"></pre>
+</section>
+
+<script>
+(function(){
+  const API = 'http://localhost:3000';
+  const $ = id => document.getElementById(id);
+
+  $('btn-fav-ver')?.addEventListener('click', async ()=>{
+    const dpi = ($('fav-dpi').value||'').trim();
+    const box = $('fav-out');
+    if (!dpi){ box.textContent = 'Ingresa DPI.'; return; }
+    box.textContent = 'Cargando…';
+    try{
+      const r = await fetch(`${API}/api/cliente/${dpi}/favoritos`);
+      const data = await r.json();
+      if (!r.ok) throw data;
+      box.textContent =
+        `Bebida : ${data.Bebida?.producto || '(sin favorito)'}\n` +
+        `Galleta: ${data.Galleta?.producto || '(sin favorito)'}\n` +
+        `Salado : ${data.Salado?.producto || '(sin favorito)'}`;
+    }catch(e){
+      box.textContent = (e && e.error) ? e.error : 'Error consultando favoritos';
+    }
+  });
+
+  $('btn-fav-recalc')?.addEventListener('click', async ()=>{
+    const dpi = ($('fav-dpi').value||'').trim();
+    const box = $('fav-out');
+    if (!dpi){ box.textContent = 'Ingresa DPI.'; return; }
+    box.textContent = 'Recalculando…';
+    try{
+      const r = await fetch(`${API}/api/cliente/${dpi}/recalcular-favoritos`, { method:'POST' });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      // vuelve a consultar para mostrar en formato bonito
+      const r2 = await fetch(`${API}/api/cliente/${dpi}/favoritos`);
+      const favs = await r2.json();
+      box.textContent =
+        `Bebida : ${favs.Bebida?.producto || '(sin favorito)'}\n` +
+        `Galleta: ${favs.Galleta?.producto || '(sin favorito)'}\n` +
+        `Salado : ${favs.Salado?.producto || '(sin favorito)'}`;
+    }catch(e){
+      box.textContent = (e && e.error) ? e.error : 'Error recalculando favoritos';
+    }
+  });
+})();
+</script>
+
+
+  </div>
+</main>
+
+<!-- =========================================LO RUDO================================================= -->
+  <script>
+(function(){
+  // look quién está logueado
+  try {
+    var nombre = localStorage.getItem('nombre_usuario') || '';
+    var rol    = localStorage.getItem('rol') || '';
+    var ui     = document.getElementById('user-info');
+    if (ui && (nombre || rol)) ui.textContent = 'Sesión: ' + nombre + (rol ? ' (' + rol + ')' : '');
+  } catch (e) {}
+
+  const API = 'http://localhost:3000';
+
+  const fmtQ = v => 'Q' + Number(v||0).toFixed(2);
+
+  // --- show mesas y productos ---
+  async function loadMesas() {
+    const res = await fetch(API + '/api/mesas');
+    const data = await res.json();
+    const sel = document.getElementById('sel-mesa');
+    sel.innerHTML = '<option value="">Mesa…</option>' + data.map(m => (
+      `<option value="${m.id}">Mesa ${m.id} (${m.capacidad || 'cap.?'}p)</option>`
+    )).join('');
+  }
+
+  let productos = [];
+  async function loadProductos() {
+    const res = await fetch(API + '/api/productos');
+    productos = await res.json();
+    const sel = document.getElementById('sel-producto');
+    sel.innerHTML = '<option value="">Producto del menú…</option>' + productos.map(p => (
+      `<option value="${p.id}">${p.nombre} — ${fmtQ(p.precio)}</option>`
+    )).join('');
+  }
+
+  // --- carrito -----
+  const cart = []; 
+  function renderCart() {
+    const tbody = document.getElementById('cart-body');
+    tbody.innerHTML = '';
+    let total = 0;
+    cart.forEach((it, idx) => {
+      const sub = it.precio * it.cantidad;
+      total += sub;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="padding:.5rem;">${it.nombre}</td>
+        <td style="padding:.5rem;text-align:right;">${fmtQ(it.precio)}</td>
+        <td style="padding:.5rem;text-align:right;">${it.cantidad}</td>
+        <td style="padding:.5rem;text-align:right;">${fmtQ(sub)}</td>
+        <td style="padding:.5rem;text-align:center;">
+          <button class="btn btn-primary" data-del="${idx}">Quitar</button>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+    document.getElementById('cart-total').textContent = fmtQ(total);
+    // maybe
+    tbody.querySelectorAll('[data-del]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = Number(btn.getAttribute('data-del'));
+        cart.splice(i,1);
+        renderCart();
+      });
+    });
+  }
+
+  document.getElementById('btn-add-item').addEventListener('click', () => {
+    const idProd = document.getElementById('sel-producto').value;
+    const qty    = Number(document.getElementById('sel-cantidad').value || '1');
+    if (!idProd) return alert('Seleccione un producto');
+    if (qty <= 0) return alert('Cantidad inválida');
+
+    const p = productos.find(x => String(x.id) === String(idProd));
+    if (!p) return alert('Producto no encontrado');
+
+    // si ya existe pos suma cantidad
+    const ex = cart.find(x => x.id === p.id);
+    if (ex) ex.cantidad += qty;
+    else cart.push({ id: p.id, nombre: p.nombre, precio: Number(p.precio), cantidad: qty });
+
+    renderCart();
+  });
+
+  document.getElementById('btn-clear-cart').addEventListener('click', () => {
+    cart.length = 0;
+    renderCart();
+  });
+
+  // ------------ send el pedido--
+  document.getElementById('btn-submit-order').addEventListener('click', async () => {
+    const mesaId = document.getElementById('sel-mesa').value;
+    const msgEl  = document.getElementById('order-msg');
+    if (!mesaId) return alert('Seleccione una mesa');
+    if (!cart.length) return alert('Agregue al menos un producto');
+
+    try {
+      const res = await fetch(API + '/api/pedidos', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          mesa_id: Number(mesaId),
+          items: cart.map(c => ({ producto_id: c.id, cantidad: c.cantidad }))
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw data;
+      msgEl.textContent = `Pedido #${data.pedido_id} registrado ✅ Total: ${fmtQ(data.total)}.`;
+      cart.length = 0; renderCart();
+    } catch (e) {
+      msgEl.textContent = (e && e.error) ? e.error : 'Error registrando pedido';
+    }
+  });
+
+
+
+  //  cats al abrir
+  loadMesas().catch(()=>{});
+  loadProductos().catch(()=>{});
+
+})();
+
+// ------de hora/minuto ---
+(function initTimePicker(){
+  const HH = document.getElementById('res-hora-hh');
+  const MM = document.getElementById('res-hora-mm');
+
+  // horario de snoop cook: 11:00 a 19:59
+  const OPEN_H = 11, CLOSE_H = 19;
+
+  
+  HH.innerHTML = '<option value="">Hora…</option>';
+  MM.innerHTML = '<option value="">Min…</option>';
+
+  //  horas con etiqueta amigable (am/pm)  (sacado de la web)
+  for (let h = OPEN_H; h <= CLOSE_H; h++) {
+    const label12 = (h === 0) ? '12:00 am'
+                   : (h < 12) ? `${h.toString().padStart(2,'0')}:00 am`
+                   : (h === 12) ? '12:00 pm'
+                   : `${(h-12).toString().padStart(2,'0')}:00 pm`;
+    const opt = document.createElement('option');
+    opt.value = h.toString().padStart(2,'0'); 
+    opt.textContent = label12.replace(':00',''); 
+    HH.appendChild(opt);
+  }
+
+  // min exactos 00-59 
+  for (let m = 0; m < 60; m++) {
+    const opt = document.createElement('option');
+    opt.value = m.toString().padStart(2,'0');
+    opt.textContent = m.toString().padStart(2,'0');
+    MM.appendChild(opt);
+  }
+})();
+
+//----------------- ESTADO MESAA-------------------------------------
+document.getElementById('btn-buscar-estado').addEventListener('click', async ()=>{
+  const id = Number(document.getElementById('q-mesa').value);
+  const out = document.getElementById('estado-mesa');
+  out.textContent = '';
+  if (!id) { out.textContent = 'Ingresa ID mesa'; return; }
+  const r = await fetch(`${API}/api/mesa/${id}/estado`);
+  const data = await r.json();
+  out.textContent = r.ok ? JSON.stringify(data, null, 2) : (data.error || 'Error');
+});
+
+// WALK IN
+document.getElementById('btn-walkin').addEventListener('click', async ()=>{
+  const body = {
+    nombre:  document.getElementById('w-nombre').value.trim(),
+    telefono:document.getElementById('w-telefono').value.trim(),
+    correo:  document.getElementById('w-correo').value.trim(),
+    dpi:     document.getElementById('w-dpi').value.trim(),
+    sede_id: Number(document.getElementById('w-sede').value),
+    mesa_id: Number(document.getElementById('w-mesa').value),
+    capacidad: Number(document.getElementById('w-cap').value || 0) || null,
+    observaciones: document.getElementById('w-obs').value.trim() || null
+  };
+  const msg = document.getElementById('w-msg');
+  msg.textContent = '';
+  try{
+    const r = await fetch(`${API}/api/walkin`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(body)
+    });
+    const data = await r.json();
+    msg.textContent = r.ok ? `Walk-in iniciado: reserva #${data.id} (${data.estado})` : (data.error || 'Error');
+  }catch(e){ msg.textContent = 'Error de red'; }
+});
+
+// UPDATEAR MESA ESTADO
+document.getElementById('btn-estado').addEventListener('click', async ()=>{
+  const id = Number(document.getElementById('st-mesa').value);
+  const estado = document.getElementById('st-estado').value;
+  const msg = document.getElementById('st-msg');
+  msg.textContent = '';
+  if (!id) { msg.textContent = 'Ingresa ID mesa'; return; }
+  const r = await fetch(`${API}/api/mesa/${id}/estado`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ estado })
+  });
+  const data = await r.json();
+  msg.textContent = r.ok ? `Estado actualizado a "${data.estado}"` : (data.error || 'Error');
+});
+
+// COMENT POR DPI maybe en prueba
+document.getElementById('btn-coment').addEventListener('click', async ()=>{
+  const dpi = document.getElementById('c-dpi').value.trim();
+  const comentario = document.getElementById('c-texto').value.trim();
+  const msg = document.getElementById('c-msg');
+  msg.textContent = '';
+  const r = await fetch(`${API}/api/comentarios`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ dpi, comentario })
+  });
+  const data = await r.json();
+  msg.textContent = r.ok ? 'Comentario guardado' : (data.error || 'Error');
+});
+
+// favo que no sirve 
+document.getElementById('btn-fav-get').addEventListener('click', async ()=>{
+  const dpi = document.getElementById('f-dpi').value.trim();
+  const msg = document.getElementById('f-msg');
+  msg.textContent = '';
+  const r = await fetch(`${API}/api/cliente/${dpi}/favorito`);
+  const data = await r.json();
+  msg.textContent = r.ok ? `Favorito: ${data.producto_fav || '(ninguno)'}` : (data.error || 'Error');
+});
+
+document.getElementById('btn-fav-set').addEventListener('click', async ()=>{
+  const dpi = document.getElementById('f-dpi').value.trim();
+  const producto_fav = document.getElementById('f-prod').value.trim();
+  const msg = document.getElementById('f-msg');
+  msg.textContent = '';
+  const r = await fetch(`${API}/api/cliente/${dpi}/favorito`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ producto_fav })
+  });
+  const data = await r.json();
+  msg.textContent = r.ok ? `Actualizado: ${data.producto_fav}` : (data.error || 'Error');
+});
+
+
+</script>
+
+
+<script>
+(function(){
+  const API = 'http://localhost:3000';
+// nuevos scripts porque sí :()
+async function buscarEstadoMesa(){
+  const id = Number(document.getElementById('q-mesa').value);
+  const out = document.getElementById('estado-mesa');
+  out.textContent = '';
+  if (!id) { out.textContent = 'Ingresa un ID de mesa válido.'; return; }
+
+  try{
+    const r = await fetch(`http://localhost:3000/api/mesa/${id}/estado`);
+    const data = await r.json();
+    if (!r.ok) throw data;
+
+    const mesaId = data.mesa_id ?? data.id_mesa ?? data.mesa ?? id;
+    const estado = (data.estado || '').toUpperCase();
+    const cliente = data.cliente ? `\nCliente: ${data.cliente}` : '';
+    const inicio  = data.inicio  ? `\nInicio:  ${new Date(data.inicio).toLocaleString()}` : '';
+    const fin     = data.fin     ? `\nFin:     ${new Date(data.fin).toLocaleString()}` : '';
+    const prox    = data.proxima_reserva_inicio
+                    ? `\n\nPróxima reserva → ${new Date(data.proxima_reserva_inicio).toLocaleString()} (Cliente: ${data.proxima_reserva_cliente||'N/D'})`
+                    : '';
+
+    out.textContent =
+      `Mesa ${mesaId} — ${estado}` +
+      (data.reserva_id ? `\nReserva #${data.reserva_id}` : '') +
+      cliente + inicio + fin + prox;
+  }catch(e){
+    out.textContent = (e && e.error) ? e.error : 'Error consultando estado.';
+  }
+}
+document.getElementById('btn-buscar-estado')?.addEventListener('click', buscarEstadoMesa);
+
+// ---------- visitas de hoy (columna derecha) ----------
+async function verVisitasHoy(){
+  const box = document.getElementById('visitas-out');
+  box.textContent = 'Cargando visitas de hoy…';
+  try{
+    const r = await fetch('http://localhost:3000/api/visitas-hoy');
+    const data = await r.json();
+    if (!r.ok) throw data;
+
+    if (!Array.isArray(data) || data.length === 0){
+      box.textContent = '(Sin visitas hoy)';
+      return;
+    }
+    box.textContent = data.map(v => {
+      const hora = v.inicio ? new Date(v.inicio).toLocaleTimeString() : 'N/D';
+      return `#${v.reserva_id} | Mesa ${v.mesa_id} | ${v.cliente || 'Cliente'} | ${v.estado} | ${hora}`;
+    }).join('\n');
+  }catch(e){
+    box.textContent = (e && e.error) ? e.error : 'Error listando visitas.';
+  }
+}
+document.getElementById('btn-ver-visitas')?.addEventListener('click', verVisitasHoy);
+
+  // ---------- Walk-in (submit del formulario) ----------
+
+  document.getElementById('frm-walkin')?.addEventListener('submit', async (ev)=>{
+    ev.preventDefault();
+    const feedback = document.getElementById('w-feedback');
+
+    const nombre = document.getElementById('w-nombre').value.trim();
+    const telefono = document.getElementById('w-telefono').value.trim();
+    const correo = document.getElementById('w-correo').value.trim();
+    const dpi = document.getElementById('w-dpi').value.trim();
+    const sede_id = Number(document.getElementById('w-sede').value);
+    const capacidad = Number(document.getElementById('w-capacidad').value);
+    const mesa_id = Number(document.getElementById('w-mesa').value);
+    const obs = document.getElementById('w-obs').value.trim() || null;
+
+    if (!nombre || !telefono || !dpi || !sede_id || !capacidad || !mesa_id){
+      feedback.textContent = 'Completa los campos obligatorios.'; return;
+    }
+
+    try{
+      const r = await fetch(`${API}/api/reservas`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          nombre, telefono, correo, dpi,
+          sede_id, mesa_id,
+          inicio: null, fin: null,  
+          capacidad, observaciones: obs
+        })
+      });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      feedback.textContent = `Walk-in creado: #${data.id} (${data.estado ?? 'activa'}) ✅`;
+      ev.target.reset();
+      document.getElementById('w-obs-count').textContent = '0/150';
+    }catch(e){
+      feedback.textContent = (e && e.error) ? e.error : 'No se pudo crear el walk-in';
+    }
+  });
+
+  // contador de observaciones
+  document.getElementById('w-obs')?.addEventListener('input', ()=>{
+    const n = (document.getElementById('w-obs').value || '').length;
+    document.getElementById('w-obs-count').textContent = `${n}/150`;
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const API = 'http://localhost:3000';
+
+  const selSede = document.getElementById('w-sede');
+  const selCap  = document.getElementById('w-capacidad');
+  const selMesa = document.getElementById('w-mesa');
+  const inpFecha= document.getElementById('w-fecha');
+  const hhIni   = document.getElementById('w-hh-i');
+  const mmIni   = document.getElementById('w-mm-i');
+  const txtObs  = document.getElementById('w-obs');
+  const obsCount= document.getElementById('w-obs-count');
+  const form    = document.getElementById('frm-walkin');
+  const fb      = document.getElementById('w-feedback');
+
+  
+  function toISO(fecha, hh, mm){
+    if (!fecha || !hh || !mm) return null;
+    const d = new Date(`${fecha}T${hh.padStart(2,'0')}:${mm.padStart(2,'0')}:00`);
+    return d.toISOString();
+  }
+  
+  function addMinutesISO(iso, mins){
+    const d = new Date(iso);
+    d.setMinutes(d.getMinutes() + mins);
+    return d.toISOString();
+  }
+
+  // Horarios para selects
+  function fillTimeSelects(){
+    const OPEN=11, CLOSE=19;
+    function fillHH(sel){
+      sel.innerHTML = '<option value="">HH…</option>';
+      for(let h=OPEN; h<=CLOSE; h++){
+        const v = String(h).padStart(2,'0');
+        const label = (h===0?'12 am': h<12? `${h} am`: h===12? '12 pm': `${h-12} pm`);
+        sel.insertAdjacentHTML('beforeend', `<option value="${v}">${label}</option>`);
+      }
+    }
+    function fillMM(sel){
+      sel.innerHTML = '<option value="">MM…</option>';
+      for(let m=0; m<60; m++){
+        const v = String(m).padStart(2,'0');
+        sel.insertAdjacentHTML('beforeend', `<option value="${v}">${v}</option>`);
+      }
+    }
+    fillHH(hhIni); fillMM(mmIni);
+  }
+
+  async function loadSedes(){
+    selSede.innerHTML = '<option value="">Sede…</option>';
+    const r = await fetch(`${API}/api/sedes`);
+    const data = await r.json();
+    data.forEach(s => selSede.insertAdjacentHTML('beforeend', `<option value="${s.id}">${s.nombre}</option>`));
+  }
+
+  async function loadCapacidades(){
+    selCap.innerHTML  = '<option value="">Personas…</option>';
+    selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+    if (!selSede.value) return;
+    const r = await fetch(`${API}/api/capacidades?sede_id=${encodeURIComponent(selSede.value)}`);
+    const caps = await r.json();
+    caps.forEach(c => selCap.insertAdjacentHTML('beforeend', `<option value="${c.capacidad}">${c.capacidad}</option>`));
+  }
+
+  
+  async function loadMesasDisponibles(){
+    selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+
+    const sede_id   = selSede.value;
+    const capacidad = selCap.value;
+    const inicioISO = toISO(inpFecha.value, hhIni.value, mmIni.value);
+    if (!sede_id || !capacidad || !inicioISO) return;
+    const finVirtual = addMinutesISO(inicioISO, 90);
+
+    const url = new URL(`${API}/api/mesas-disponibles`);
+    url.searchParams.set('sede_id',   sede_id);
+    url.searchParams.set('capacidad', capacidad);
+    url.searchParams.set('inicio',    inicioISO);
+    url.searchParams.set('fin',       finVirtual);
+
+    const r = await fetch(url);
+    if (!r.ok) { fb.textContent = 'No se pudo consultar disponibilidad.'; return; }
+    const mesas = await r.json();
+    if (!Array.isArray(mesas) || mesas.length===0){
+      selMesa.innerHTML = '<option value="">(Sin mesas libres)</option>';
+      return;
+    }
+    mesas.forEach(m => {
+      const id = m.id ?? m.id_mesa ?? m.mesa_id ?? m.codigo;
+      if (id==null) return;
+      const label = m.codigo ? `Mesa ${m.codigo}` : `Mesa ${id}`;
+      selMesa.insertAdjacentHTML('beforeend', `<option value="${id}">${label}</option>`);
+    });
+  }
+
+  // Contador de observaciones
+  txtObs?.addEventListener('input', () => {
+    const n = (txtObs.value||'').length;
+    obsCount.textContent = `${n}/150`;
+  });
+
+  // Submit walk-in (sin fin)
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    fb.textContent = '';
+
+    const nombre   = document.getElementById('w-nombre').value.trim();
+    const telefono = document.getElementById('w-telefono').value.trim();
+    const correo   = document.getElementById('w-correo').value.trim();
+    const dpi      = document.getElementById('w-dpi').value.trim();
+    const sede_id  = Number(selSede.value||0);
+    const capacidad= Number(selCap.value||0) || null;
+    const mesa_id  = Number(selMesa.value||0);
+    const inicio   = toISO(inpFecha.value, hhIni.value, mmIni.value);
+    const observaciones = (txtObs.value||'').trim() || null;
+
+    if (!nombre || !telefono || !dpi) { fb.textContent = 'Completa nombre, teléfono y DPI.'; return; }
+    if (!sede_id || !mesa_id || !inicio) { fb.textContent = 'Selecciona sede, inicio y mesa.'; return; }
+
+    try{
+      const r = await fetch(`${API}/api/walkin`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          nombre, telefono, correo, dpi,
+          sede_id, mesa_id, inicio,
+          capacidad, observaciones
+        })
+      });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      fb.textContent = `Walk-in #${data.id} iniciado ✅`;
+      form.reset();
+      obsCount.textContent = '0/150';
+      selMesa.innerHTML = '<option value="">Mesa disponible…</option>';
+    }catch(e){
+      fb.textContent = (e && e.error) ? e.error : 'No se pudo iniciar el walk-in';
+    }
+  });
+
+
+  (function init(){
+    const hoy = new Date().toISOString().slice(0,10);
+    document.getElementById('w-fecha').min = hoy;
+    fillTimeSelects();
+    loadSedes().catch(()=>{});
+    selSede.addEventListener('change', async ()=>{ await loadCapacidades(); await loadMesasDisponibles(); });
+    selCap .addEventListener('change', loadMesasDisponibles);
+    [document.getElementById('w-fecha'), hhIni, mmIni].forEach(el => el.addEventListener('change', loadMesasDisponibles));
+  })();
+})();
+
+</script>
+
+<script>
+(function(){
+  const API = 'http://localhost:3000';
+  const $ = (id) => document.getElementById(id);
+
+  const inpMesa = $('st-mesa-id');
+  const btnLoad = $('st-load');
+  const panel   = $('st-panel');
+  const info    = $('st-info');
+  const sel     = $('st-select');
+  const btnApply= $('st-apply');
+  const msg     = $('st-msg');
+
+  let mesaIdCargada = null;
+  let estadoActual  = null;
+  let reservaId     = null;
+
+  async function cargar(){
+    msg.textContent = '';
+    panel.style.display = 'none';
+
+    const id = Number(inpMesa.value);
+    if (!id){ msg.textContent = 'Ingresa un ID de mesa válido.'; return; }
+
+    try{
+      const r = await fetch(`${API}/api/mesa/${id}/estado`);
+      const data = await r.json();
+      if (!r.ok) throw data;
+
+      mesaIdCargada = id;
+      estadoActual  = (data?.estado || 'libre').toLowerCase();
+      reservaId     = data?.reserva_id || null;
+
+      const cliente = data?.cliente ? `\nCliente: ${data.cliente}` : '';
+      const inicio  = data?.inicio  ? `\nInicio:  ${new Date(data.inicio).toLocaleString()}` : '';
+      const fin     = data?.fin     ? `\nFin:     ${new Date(data.fin).toLocaleString()}`
+                                    : (['entregado'].includes(estadoActual) ? '\nFin:     (sin hora fin)' : '');
+      info.textContent =
+        `Mesa ${id} — ${estadoActual.toUpperCase()}` +
+        (reservaId ? `\nReserva #${reservaId}` : '\n(Sin reserva/visita abierta)') +
+        cliente + inicio + fin;
+
+    
+      sel.disabled = !reservaId && estadoActual === 'libre';
+
+    
+      if (['pendiente','entregado','finalizada'].includes(estadoActual)) {
+        sel.value = estadoActual;
+      } else {
+        sel.value = 'pendiente';
+      }
+
+      panel.style.display = 'block';
+    }catch(e){
+      msg.textContent = (e && e.error) ? e.error : 'Error consultando estado de mesa.';
+    }
+  }
+
+  async function aplicar(){
+    msg.textContent = '';
+    if (!mesaIdCargada){ msg.textContent = 'Carga una mesa primero.'; return; }
+    const nuevo = sel.value;
+
+    if (!reservaId && estadoActual === 'libre'){
+      msg.textContent = 'La mesa está libre. Inicia una reserva o walk-in para cambiar estado.';
+      return;
+    }
+
+    try{
+      const r = await fetch(`${API}/api/mesa/${mesaIdCargada}/estado`, {
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ estado: nuevo })
+      });
+      const data = await r.json();
+      if (!r.ok) throw data;
+
+      msg.textContent = `Estado actualizado a "${data.estado}" ✅`;
+      await cargar();
+    }catch(e){
+      msg.textContent = (e && e.error) ? e.error : 'No se pudo actualizar el estado.';
+    }
+  }
+
+  btnLoad?.addEventListener('click', cargar);
+  btnApply?.addEventListener('click', aplicar);
+})();
+</script>
+
+<script>
+(() => {
+  const API = 'http://localhost:3000';
+  const dpiEl = document.getElementById('fav-dpi');
+  const out   = document.getElementById('fav-out');
+
+  document.getElementById('btn-ver-favs')?.addEventListener('click', async () => {
+    out.textContent = '';
+    const dpi = dpiEl.value.trim();
+    if (!dpi) { out.textContent = 'Ingresa DPI'; return; }
+    try{
+      const r = await fetch(`${API}/api/cliente/${dpi}/favoritos`);
+      const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent =
+        `Bebida : ${data.Bebida?.producto  ?? '(sin favorito)'}\n`+
+        `Galleta: ${data.Galleta?.producto ?? '(sin favorito)'}\n`+
+        `Salado : ${data.Salado?.producto  ?? '(sin favorito)'}\n`;
+    }catch(e){
+      out.textContent = (e && e.error) ? e.error : 'Error consultando favoritos';
+    }
+  });
+
+  document.getElementById('btn-recalc-favs')?.addEventListener('click', async () => {
+    out.textContent = '';
+    const dpi = dpiEl.value.trim();
+    if (!dpi) { out.textContent = 'Ingresa DPI'; return; }
+    try{
+      const r = await fetch(`${API}/api/cliente/${dpi}/favoritos/recalcular`, { method:'POST' });
+      const data = await r.json();
+      if (!r.ok) throw data;
+      out.textContent =
+        `Bebida : ${data.Bebida?.producto  ?? '(sin favorito)'}\n`+
+        `Galleta: ${data.Galleta?.producto ?? '(sin favorito)'}\n`+
+        `Salado : ${data.Salado?.producto  ?? '(sin favorito)'}\n`;
+    }catch(e){
+      out.textContent = (e && e.error) ? e.error : 'Error recalculando favoritos';
+    }
+  });
+})();
+</script>
+
+
+
+</body>
+</html>
