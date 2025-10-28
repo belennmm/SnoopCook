@@ -1,4 +1,4 @@
-# 🧩 Gestión de Inventario - Peanuts & Crums
+# 🧩 Gestión de Inventario - Peanuts & Crumbs
 
 Menú de gestión de inventario.
 ---
